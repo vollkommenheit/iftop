@@ -22,6 +22,10 @@
 #   error No pcap.h
 #endif
 
+#if __clang_major__ >= 4
+#pragma clang diagnostic ignored "-Waddress-of-packed-member"
+#endif
+
 #include <pthread.h>
 #include <curses.h>
 #include <signal.h>
