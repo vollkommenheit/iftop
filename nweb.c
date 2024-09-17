@@ -15,6 +15,9 @@
 #include <stdarg.h>
 #include <time.h>
 
+#define __STDC_FORMAT_MACROS
+#include <inttypes.h>
+
 #include <pwd.h>
 #include <grp.h>
 #include "config.h"
@@ -110,13 +113,13 @@ static char *generate_payload(long int *len) {
         strcpy(payload + p, "\", \"received\":");
         p += strlen("\", \"received\":");
         
-        sprintf(payload + p, "%lu", d->total_recv);
+        sprintf(payload + p, "%" PRIu64, d->total_recv);
         p = strlen(payload);
 
         strcpy(payload + p, ", \"sent\":");
         p += strlen(", \"sent\":");
 
-        sprintf(payload + p, "%lu", d->total_sent);
+        sprintf(payload + p, "%" PRIu64, d->total_sent);
         p = strlen(payload);
 
         strcpy(payload + p, ", \"protocol\":");
